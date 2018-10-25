@@ -1,6 +1,7 @@
 # Durandal 2.0 is a Discord Bot developed by Ange Pagel and compatible with Python 3.6.7.
 
 import discord
+from discord.ext import commands
 
 print("  ____                            _       _   ____    ___  ")
 print(" |  _ \ _   _ _ __ __ _ _ __   __| | __ _| | |___ \  / _ \ ")
@@ -13,7 +14,7 @@ print("\nInitialisation...\n")
 token = "UltraSecretToken"  # Bot's Token
 prefix = "!"  # Prefix used to call a Durandal command
 
-Durandal = discord.Client()
+Durandal = commands.Bot(command_prefix=prefix)
 
 
 @Durandal.event
@@ -24,11 +25,8 @@ async def on_ready():
     print("  ID   : {}".format(Durandal.user.id))
 
 
-@Durandal.event
-async def on_message(message):
-
-    if message.content.startswith(prefix+"ping"):
-        await Durandal.send_message(message.channel, prefix+"pong")
-
+@Durandal.command()
+async def ping():
+    await Durandal.say("!pong")
 
 Durandal.run(token)
