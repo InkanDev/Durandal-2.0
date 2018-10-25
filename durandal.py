@@ -29,4 +29,13 @@ async def on_ready():
 async def ping():
     await Durandal.say("!pong")
 
+@Durandal.command()
+async def echo(*args):
+    out = ""
+
+    for word in args:
+        if word != args[0] or word != args[1]:
+            out += word + " "
+    await Durandal.say(out)
+
 Durandal.run(token)
