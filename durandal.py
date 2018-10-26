@@ -33,9 +33,17 @@ async def ping():
 async def echo(*args):
     out = ""
 
-    for word in args:
-        if word != args[0] or word != args[1]:
-            out += word + " "
-    await Durandal.say(out)
+    if args[0] == "-c":
+        channel_id = args[1]
+
+        for word in args:
+            if word not in [args[0], args[1]]:
+                out += word + " "
+        await Durandal.send_message(Durandal.get_channel(channel_id), out)
+
+    else :
+        for word in args:
+                out += word + " "
+        await Durandal.say(out)
 
 Durandal.run(token)
