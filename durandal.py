@@ -24,6 +24,12 @@ async def on_ready():
     print("  Name : {}".format(Durandal.user.name))
     print("  ID   : {}".format(Durandal.user.id))
 
+    print("\n........................................................\n")
+
+    print("Connected Servers :")
+    for server in Durandal.servers:
+        print("\n  Name : {}".format(server.name))
+        print("  ID   : {}".format(server.id))
 
 @Durandal.command()
 async def ping():
