@@ -4,7 +4,7 @@ class Log:
         pass
 
     def event(self, event: str):
-        self.display(event)
+        self.__display(event)
 
-    def display(self, event: str):
+    def __display(self, event: str):
         print(event)
