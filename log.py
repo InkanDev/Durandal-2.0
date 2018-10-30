@@ -13,3 +13,9 @@ class Log:
 
     def __display(self, event: str):
         print(event)
+
+    def __write_in_file(self, event: str):
+        log_file = open("logs.txt", "a+")
+        log_file.write(event + "\n")
+        log_file.close()
+
