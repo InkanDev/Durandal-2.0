@@ -2,6 +2,7 @@
 
 import discord
 from discord.ext import commands
+from log import Log
 
 print("  ____                            _       _   ____    ___  ")
 print(" |  _ \ _   _ _ __ __ _ _ __   __| | __ _| | |___ \  / _ \ ")
@@ -19,6 +20,7 @@ Durandal = commands.Bot(command_prefix=prefix)
 
 @Durandal.event
 async def on_ready():
+    Log.event("Durandal started.")
     print("Durandal 2.0 is online.\n")
 
     print("  Name : {}".format(Durandal.user.name))
