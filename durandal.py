@@ -2,6 +2,7 @@
 
 import discord
 from discord.ext import commands
+from log import Log
 
 print("  ____                            _       _   ____    ___  ")
 print(" |  _ \ _   _ _ __ __ _ _ __   __| | __ _| | |___ \  / _ \ ")
@@ -30,6 +31,11 @@ async def on_ready():
     for server in Durandal.servers:
         print("\n  Name : {}".format(server.name))
         print("  ID   : {}".format(server.id))
+
+    print("\n........................................................\n")
+
+    print("Event Log :\n")
+    Log.event("Durandal started.")
 
 @Durandal.command()
 async def ping():
