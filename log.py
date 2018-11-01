@@ -8,6 +8,7 @@ class Log:
         time = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
         formatted_event = time + " " + event
         Log.__display(formatted_event)
+        Log.__write_in_file(formatted_event)
 
     @staticmethod
     def __display(event: str):
