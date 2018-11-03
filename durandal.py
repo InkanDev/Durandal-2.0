@@ -46,8 +46,8 @@ async def ping(ctx):
               + ", channel: " + ctx.message.channel.name)
 
 
-@Durandal.command()
-async def echo(*args):
+@Durandal.command(pass_context=True)
+async def echo(ctx, *args):
     out = ""
 
     if args[0] == "-c":
@@ -62,5 +62,9 @@ async def echo(*args):
         for word in args:
                 out += word + " "
         await Durandal.say(out)
+
+    Log.event("Command !ping invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")"
+              + " from server: " + ctx.message.author.server.name
+              + ", channel: " + ctx.message.channel.name)
 
 Durandal.run(token)
