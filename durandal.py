@@ -37,9 +37,14 @@ async def on_ready():
     print("Event Log :\n")
     Log.event("Durandal started.")
 
-@Durandal.command()
-async def ping():
+
+@Durandal.command(pass_context=True)
+async def ping(ctx):
     await Durandal.say("!pong")
+    Log.event("Command !ping invoked by: " + str(ctx.message.author)
+              + " from server: " + ctx.message.author.server.name
+              + ", channel: " + ctx.message.channel.name)
+
 
 @Durandal.command()
 async def echo(*args):
@@ -53,7 +58,7 @@ async def echo(*args):
                 out += word + " "
         await Durandal.send_message(Durandal.get_channel(channel_id), out)
 
-    else :
+    else:
         for word in args:
                 out += word + " "
         await Durandal.say(out)
