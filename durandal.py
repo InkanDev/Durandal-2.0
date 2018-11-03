@@ -41,7 +41,7 @@ async def on_ready():
 @Durandal.command(pass_context=True)
 async def ping(ctx):
     await Durandal.say("!pong")
-    Log.event("Command !ping invoked by: " + str(ctx.message.author)
+    Log.event("Command !ping invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")"
               + " from server: " + ctx.message.author.server.name
               + ", channel: " + ctx.message.channel.name)
 
