@@ -2,4 +2,6 @@
 *.xml
 *.iml
 logs.txt
+token.txt
+
 __pycache__/
