@@ -12,7 +12,7 @@ print(" |____/ \__,_|_|  \__,_|_| |_|\__,_|\__,_|_| |_____(_)___/ ")
 
 print("\nInitialisation...\n")
 
-token = "UltraSecretToken"  # Bot's Token
+token = open("token.txt", "r").read()  # Bot's Token
 prefix = "!"  # Prefix used to call a Durandal command
 
 Durandal = commands.Bot(command_prefix=prefix)
