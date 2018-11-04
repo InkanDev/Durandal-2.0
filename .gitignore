@@ -2,3 +2,4 @@
 *.xml
 *.iml
 logs.txt
+__pycache__/
