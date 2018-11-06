@@ -43,6 +43,11 @@ async def on_server_join(server):
     Log.event("Durandal joined server: {}".format(server.name))
 
 
+@Durandal.event
+async def on_server_remove(server):
+    Log.event("Durandal left server: {}".format(server.name))
+
+
 @Durandal.command(pass_context=True)
 async def ping(ctx):
     await Durandal.say("!pong")
