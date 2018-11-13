@@ -23,15 +23,15 @@ Durandal = commands.Bot(command_prefix=prefix)
 async def on_ready():
     print("Durandal 2.0 is online.\n")
 
-    print("  Name : {}".format(Durandal.user.name))
-    print("  ID   : {}".format(Durandal.user.id))
+    print(f"  Name : {Durandal.user.name}")
+    print(f"  ID   : {Durandal.user.id}")
 
     print("\n........................................................\n")
 
     print("Connected Servers :")
     for server in Durandal.servers:
-        print("\n  Name : {}".format(server.name))
-        print("  ID   : {}".format(server.id))
+        print(f"\n  Name : {server.name}")
+        print(f"  ID   : {server.id}")
 
     print("\n........................................................\n")
 
@@ -41,12 +41,12 @@ async def on_ready():
 
 @Durandal.event
 async def on_server_join(server):
-    Log.event("Durandal joined server: {}".format(server.name))
+    Log.event(f"Durandal joined server: {server.name}")
 
 
 @Durandal.event
 async def on_server_remove(server):
-    Log.event("Durandal left server: {}".format(server.name))
+    Log.event(f"Durandal left server: {server.name}")
 
 
 @Durandal.command(pass_context=True)
