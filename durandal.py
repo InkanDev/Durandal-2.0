@@ -3,6 +3,7 @@
 import discord
 from discord.ext import commands
 from log import Log
+from random import randint
 
 print("  ____                            _       _   ____    ___  ")
 print(" |  _ \ _   _ _ __ __ _ _ __   __| | __ _| | |___ \  / _ \ ")
@@ -76,5 +77,11 @@ async def echo(ctx, *args):
     Log.event("Command !echo invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")"
               + " from server: " + ctx.message.author.server.name
               + ", channel: " + ctx.message.channel.name)
+
+@Durandal.command(pass_context=True)
+async def random(ctx, *args):
+    min = int(args[0])
+    max = int(args[1])
+    await Durandal.say(str(randint(min, max)))
 
 Durandal.run(token)
