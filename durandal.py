@@ -80,8 +80,11 @@ async def echo(ctx, *args):
 
 @Durandal.command(pass_context=True)
 async def random(ctx, *args):
-    min = int(args[0])
-    max = int(args[1])
-    await Durandal.say(str(randint(min, max)))
+    try:
+        min = int(args[0])
+        max = int(args[1])
+        await Durandal.say(str(randint(min, max)))
+    except ValueError:
+        await Durandal.say("Error in given values")
 
 Durandal.run(token)
