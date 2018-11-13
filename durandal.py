@@ -83,5 +83,7 @@ async def random(ctx, *args):
         await Durandal.say(str(randint(min, max)))
     except ValueError:
         await Durandal.say("Error in given values")
+    Log.command_event(ctx)
+
 
 Durandal.run(token)
