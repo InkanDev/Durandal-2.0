@@ -11,6 +11,14 @@ class Log:
         Log.__write_in_file(formatted_event)
 
     @staticmethod
+    def command_event(ctx):
+        out = ("Command " + ctx.invoked_with 
+        + " invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")" 
+        + " from server: " + ctx.message.author.server.name 
+        + ", channel: " + ctx.message.channel.name)
+        Log.event(out)
+        
+    @staticmethod
     def __display(event: str):
         print(event)
 

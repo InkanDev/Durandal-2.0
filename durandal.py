@@ -52,9 +52,7 @@ async def on_server_remove(server):
 @Durandal.command(pass_context=True)
 async def ping(ctx):
     await Durandal.say("!pong")
-    Log.event("Command !ping invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")"
-              + " from server: " + ctx.message.author.server.name
-              + ", channel: " + ctx.message.channel.name)
+    Log.command_event(ctx)
 
 
 @Durandal.command(pass_context=True)
@@ -74,9 +72,8 @@ async def echo(ctx, *args):
                 out += word + " "
         await Durandal.say(out)
 
-    Log.event("Command !echo invoked by: " + ctx.message.author.nick + "(" + str(ctx.message.author) + ")"
-              + " from server: " + ctx.message.author.server.name
-              + ", channel: " + ctx.message.channel.name)
+    Log.command_event(ctx)
+
 
 @Durandal.command(pass_context=True)
 async def random(ctx, *args):
