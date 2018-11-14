@@ -95,6 +95,7 @@ async def translate(ctx, *args):
     for word in args:
         str += word + " "
     await Durandal.say(translator.translate(str).text)
+    Log.command_event(ctx)
 
 
 Durandal.run(token)
