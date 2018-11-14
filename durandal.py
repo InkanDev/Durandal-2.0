@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 from log import Log
 from random import randint
+from googletrans import Translator
+
 
 print("  ____                            _       _   ____    ___  ")
 print(" |  _ \ _   _ _ __ __ _ _ __   __| | __ _| | |___ \  / _ \ ")
@@ -84,6 +86,15 @@ async def random(ctx, *args):
     except ValueError:
         await Durandal.say("Error in given values")
     Log.command_event(ctx)
+
+
+@Durandal.command(pass_context=True)
+async def translate(ctx, *args):
+    translator = Translator()
+    str = ""
+    for word in args:
+        str += word + " "
+    await Durandal.say(translator.translate(str).text)
 
 
 Durandal.run(token)
