@@ -78,6 +78,20 @@ async def echo(ctx, *args):
 
 
 @Durandal.command(pass_context=True)
+async def reaction(ctx):
+    msg = await Durandal.say("Reaction !")
+    await Durandal.add_reaction(msg, '🇷')
+    await Durandal.add_reaction(msg, '🇪')
+    await Durandal.add_reaction(msg, '🇦')
+    await Durandal.add_reaction(msg, '🇨')
+    await Durandal.add_reaction(msg, '🇹')
+    await Durandal.add_reaction(msg, '🇮')
+    await Durandal.add_reaction(msg, '🇴')
+    await Durandal.add_reaction(msg, '🇳')
+    Log.command_event(ctx)  
+
+
+@Durandal.command(pass_context=True)
 async def random(ctx, *args):
     try:
         min = int(args[0])
