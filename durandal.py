@@ -77,17 +77,10 @@ async def echo(ctx, *args):
     Log.command_event(ctx)
 
 
-@Durandal.command(pass_context=True)
+@Durandal.group(pass_context=True)
 async def reaction(ctx):
-    msg = await Durandal.say("Reaction !")
-    await Durandal.add_reaction(msg, '🇷')
-    await Durandal.add_reaction(msg, '🇪')
-    await Durandal.add_reaction(msg, '🇦')
-    await Durandal.add_reaction(msg, '🇨')
-    await Durandal.add_reaction(msg, '🇹')
-    await Durandal.add_reaction(msg, '🇮')
-    await Durandal.add_reaction(msg, '🇴')
-    await Durandal.add_reaction(msg, '🇳')
+    if ctx.invoked_subcommand is None:
+        await Durandal.say('Beep boop, I do not know how to react.')
     Log.command_event(ctx)  
 
 
