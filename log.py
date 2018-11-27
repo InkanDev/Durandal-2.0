@@ -20,6 +20,16 @@ class Log:
         Log.event(f"Command {command_name} invoked by user: {author}({author_nick}) from server: {server}, channel: {channel}")
         
     @staticmethod
+    def subcommand_event(ctx):
+        subcommand_name = ctx.invoked_subcommand.name
+        command_name = ctx.invoked_subcommand.parent.name
+        author = ctx.message.author
+        author_nick = ctx.message.author.nick
+        server = ctx.message.author.server.name
+        channel = ctx.message.channel.name
+        Log.event(f"Subcommand {subcommand_name}({command_name}) invoked by user: {author}({author_nick}) from server: {server}, channel: {channel}")
+
+    @staticmethod
     def __display(event: str):
         print(event)
 
