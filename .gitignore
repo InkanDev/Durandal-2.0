@@ -3,5 +3,6 @@
 *.iml
 logs.txt
 token.txt
+giphy_key.txt
 
 __pycache__/
