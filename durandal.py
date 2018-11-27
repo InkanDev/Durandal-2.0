@@ -81,7 +81,9 @@ async def echo(ctx, *args):
 async def reaction(ctx):
     if ctx.invoked_subcommand is None:
         await Durandal.say('Beep boop, I do not know how to react.')
-    Log.command_event(ctx)  
+        Log.command_event(ctx)
+    else:
+        Log.subcommand_event(ctx)
 
 
 @Durandal.command(pass_context=True)
