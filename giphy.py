@@ -10,5 +10,5 @@ class Giphy:
 
     @staticmethod
     def search(keywords):
-        api_response = Giphy.api_instance.gifs_search_get(Giphy.api_key, keywords)
+        api_response = Giphy.api_instance.gifs_search_get(Giphy.api_key, keywords, limit=100)
         return api_response.data
