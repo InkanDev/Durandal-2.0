@@ -5,6 +5,7 @@ from discord.ext import commands
 from log import Log
 from random import randint
 from googletrans import Translator
+from giphy import Giphy
 
 
 print(r"  ____                            _       _   ____    ___  ")
@@ -84,6 +85,14 @@ async def reaction(ctx):
         Log.command_event(ctx)
     else:
         Log.subcommand_event(ctx)
+
+
+@Durandal.command(pass_context=True)
+async def gif(ctx, *args):
+    gif = discord.Embed()
+    gif.set_image(url=Giphy.get_url(Giphy.get_random_gif(Giphy.search(args[0]))))
+    await Durandal.say(embed=gif)
+    Log.command_event(ctx)
 
 
 @Durandal.command(pass_context=True)
