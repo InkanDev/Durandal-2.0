@@ -97,9 +97,12 @@ async def gif(ctx, *args):
 
 @Durandal.command(pass_context=True)
 async def purge(ctx, *args):
-    async for message in Durandal.logs_from (ctx.message.channel, limit=100):
-        await Durandal.delete_message(message)
-    Log.command_event(ctx)
+    if ctx.message.author.server_permissions.administrator:
+        async for message in Durandal.logs_from (ctx.message.channel, limit=100):
+            await Durandal.delete_message(message)
+        Log.command_event(ctx)
+    else:
+        await Durandal.say("You must be an administrator.")
 
 
 @Durandal.command(pass_context=True)
