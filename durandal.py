@@ -103,9 +103,15 @@ async def purge(ctx, *args):
         await Durandal.add_reaction(warning, emoji="❌")
         await Durandal.add_reaction(warning, emoji="✅")
         react = await Durandal.wait_for_reaction(["❌", "✅"], user=ctx.message.author, message=warning)
-        if react.reaction.emoji == "✅":
+        if react.reaction.emoji == "❌":
+            await Durandal.say("Purge aborted.")
+        elif react.reaction.emoji == "✅":
+            in_progress = await Durandal.say("Purge in progress.")
             async for message in Durandal.logs_from (ctx.message.channel, limit=20):
-                await Durandal.delete_message(message)
+                if message.id != in_progress.id:
+                    await Durandal.delete_message(message)
+            await Durandal.delete_message(in_progress)
+            await Durandal.say("Purge finished")
     else:
         await Durandal.say("You must be an administrator.")
 
