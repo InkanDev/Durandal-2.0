@@ -96,6 +96,13 @@ async def gif(ctx, *args):
 
 
 @Durandal.command(pass_context=True)
+async def purge(ctx, *args):
+    async for message in Durandal.logs_from (ctx.message.channel, limit=100):
+        await Durandal.delete_message(message)
+    Log.command_event(ctx)
+
+
+@Durandal.command(pass_context=True)
 async def random(ctx, *args):
     try:
         min = int(args[0])
