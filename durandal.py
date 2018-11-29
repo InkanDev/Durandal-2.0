@@ -97,10 +97,15 @@ async def gif(ctx, *args):
 
 @Durandal.command(pass_context=True)
 async def purge(ctx, *args):
+    Log.command_event(ctx)
     if ctx.message.author.server_permissions.administrator:
-        async for message in Durandal.logs_from (ctx.message.channel, limit=100):
-            await Durandal.delete_message(message)
-        Log.command_event(ctx)
+        warning = await Durandal.say("Are you sure ?")
+        await Durandal.add_reaction(warning, emoji="❌")
+        await Durandal.add_reaction(warning, emoji="✅")
+        react = await Durandal.wait_for_reaction(["❌", "✅"], user=ctx.message.author, message=warning)
+        if react.reaction.emoji == "✅":
+            async for message in Durandal.logs_from (ctx.message.channel, limit=20):
+                await Durandal.delete_message(message)
     else:
         await Durandal.say("You must be an administrator.")
 
