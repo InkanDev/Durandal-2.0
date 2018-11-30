@@ -109,16 +109,19 @@ async def purge(ctx, *args):
         warning = await Durandal.say(f"Are you sure you want to delete {logs_limit} messages ?")
         await Durandal.add_reaction(warning, emoji="❌")
         await Durandal.add_reaction(warning, emoji="✅")
-        react = await Durandal.wait_for_reaction(["❌", "✅"], user=ctx.message.author, message=warning)
-        if react.reaction.emoji == "❌":
-            await Durandal.say("Purge aborted.")
-        elif react.reaction.emoji == "✅":
-            in_progress = await Durandal.say("Purge in progress.")
-            async for message in Durandal.logs_from (ctx.message.channel, limit=logs_limit):
-                if message.id != in_progress.id:
-                    await Durandal.delete_message(message)
-            await Durandal.delete_message(in_progress)
-            await Durandal.say("Purge finished")
+        react = await Durandal.wait_for_reaction(["❌", "✅"], user=ctx.message.author, timeout=30, message=warning)
+        if react is None:
+            await Durandal.say("Timeout, purge aborted.")
+        else:
+            if react.reaction.emoji == "❌":
+                await Durandal.say("Purge aborted.")
+            elif react.reaction.emoji == "✅":
+                in_progress = await Durandal.say("Purge in progress.")
+                async for message in Durandal.logs_from (ctx.message.channel, limit=logs_limit):
+                    if message.id != in_progress.id:
+                        await Durandal.delete_message(message)
+                await Durandal.delete_message(in_progress)
+                await Durandal.say("Purge finished")
     else:
         await Durandal.say("You must be an administrator.")
 
