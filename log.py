@@ -35,6 +35,6 @@ class Log:
 
     @staticmethod
     def __write_in_file(event: str):
-        log_file = open("logs.txt", "a+")
+        log_file = open("logs.txt", mode="a+", encoding="utf-8")
         log_file.write(f"{event}\n")
         log_file.close()
