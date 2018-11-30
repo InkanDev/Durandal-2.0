@@ -98,8 +98,15 @@ async def gif(ctx, *args):
 @Durandal.command(pass_context=True)
 async def purge(ctx, *args):
     Log.command_event(ctx)
+    try:
+        logs_limit = int(args[0])
+    except IndexError:
+        logs_limit = 100
+    except ValueError:
+        await Durandal.say(f"Argument must be a number.")
+        return
     if ctx.message.author.server_permissions.administrator:
-        warning = await Durandal.say("Are you sure ?")
+        warning = await Durandal.say(f"Are you sure you want to delete {logs_limit} messages ?")
         await Durandal.add_reaction(warning, emoji="❌")
         await Durandal.add_reaction(warning, emoji="✅")
         react = await Durandal.wait_for_reaction(["❌", "✅"], user=ctx.message.author, message=warning)
@@ -107,7 +114,7 @@ async def purge(ctx, *args):
             await Durandal.say("Purge aborted.")
         elif react.reaction.emoji == "✅":
             in_progress = await Durandal.say("Purge in progress.")
-            async for message in Durandal.logs_from (ctx.message.channel, limit=20):
+            async for message in Durandal.logs_from (ctx.message.channel, limit=logs_limit):
                 if message.id != in_progress.id:
                     await Durandal.delete_message(message)
             await Durandal.delete_message(in_progress)
